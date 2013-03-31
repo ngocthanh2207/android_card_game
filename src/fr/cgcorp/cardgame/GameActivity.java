@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,11 +31,21 @@ public class GameActivity extends Activity {
 	
 	ArrayAdapter<String> chatAdapter;
 	ArrayList<Card> deck = new ArrayList<Card>();
+	Player player;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        
+        SharedPreferences prefs = SettingsActivity.getSettings(this);
+        
+        String username = prefs.getString("username", "Anonymous");
+        player = new Player(username);
+        
+        LinearLayout ll = (LinearLayout)findViewById(R.id.my_summary);
+        TextView tv = (TextView)ll.findViewById(R.id.name);
+        tv.setText(username);
         
         fillRandomDeck();
         
@@ -82,7 +95,7 @@ public class GameActivity extends Activity {
     
     protected void fillFakeChat() {
         for (int i=0; i<20; ++i) {
-        	addLineToChat("coucou "+i);
+        	addLineToChat(player.getUsername(), "coucou "+i);
         }
     }
 
@@ -180,7 +193,7 @@ public class GameActivity extends Activity {
     	if (fl != null) {
     		if (deck.size() > 0) {
     	    	Toast.makeText(this, "Player drawed a card", Toast.LENGTH_SHORT).show();
-    	    	addLineToChat("Player drawed a card");
+    	    	addLineToChat(player.getUsername(), "Player drawed a card");
 	    		Card card = deck.remove(0);
 	    		Log.i("MainActivity", "Player drawed "+card.getDefinition().getName());
 	    		View cardView = getLayoutInflater().inflate(R.layout.card, null);
@@ -192,7 +205,7 @@ public class GameActivity extends Activity {
 	    		fl.addView(cardView);
     		}
     		else {
-    			addLineToChat("Deck is empty");
+    			addLineToChat(player.getUsername(), "Deck is empty");
     	    	Toast.makeText(this, "Deck is empty", Toast.LENGTH_SHORT).show();
     		}
     	}
@@ -202,10 +215,10 @@ public class GameActivity extends Activity {
     	}
     }
     
-    public void addLineToChat(String msg) {
+    public void addLineToChat(String username, String msg) {
     	Calendar cal = Calendar.getInstance();
     	cal.getTime();
-    	SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ");
-    	chatAdapter.add(sdf.format(cal.getTime()) + msg);
+    	SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ", Locale.US);
+    	chatAdapter.add(sdf.format(cal.getTime()) + username + ": " + msg);
     }
 }
