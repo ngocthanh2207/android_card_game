@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <include layout="@layout/card_zone" 
+        android:id="@+id/my_monster0"/>
+    <include layout="@layout/card_zone" 
+        android:id="@+id/my_monster1"/>
+    <include layout="@layout/card_zone" 
+        android:id="@+id/my_monster2"/>
+    <include layout="@layout/card_zone" 
+        android:id="@+id/my_monster3"/>
+
+</LinearLayout>

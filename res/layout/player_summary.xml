@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    
+    <ImageView
+        android:id="@+id/opponent_pic"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/unknown_face"
+        android:layout_margin="10dp" />
+
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+
+	    <TextView
+	        android:id="@+id/name"
+	        android:layout_gravity="left|center"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Anonymous"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    
+	    <TextView
+	        android:id="@+id/life_points"
+	        android:layout_gravity="left|center"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Life points : 2000"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	    <TextView
+	        android:id="@+id/resources"
+	        android:layout_gravity="left|center"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Resources : 23"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    
+	    <TextView
+	        android:id="@+id/cards"
+	        android:layout_gravity="left|center"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Cards : 35"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	   	
+	</LinearLayout>
+    
+</LinearLayout>
