@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     }
     
     public void onClickSettings(View v) {
-    	Toast.makeText(this, "Settings not implemented yet", Toast.LENGTH_SHORT).show();
+    	Intent intent = new Intent(this, fr.cgcorp.cardgame.SettingsActivity.class);
+    	startActivity(intent);
     }
 }
